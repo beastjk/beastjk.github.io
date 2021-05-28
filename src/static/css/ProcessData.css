@@ -1,0 +1,15 @@
+.assets-grid{
+    margin: 20px;
+}
+
+.assets-heading{
+    margin: 20px;
+}
+
+.assets-shadow{
+    padding: 20px;
+    border-radius: 0px;
+    background: #1A1C1D;
+    box-shadow:  5px 5px 10px #141616,
+                 -5px -5px 10px #202224;
+}

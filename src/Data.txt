@@ -1,0 +1,7 @@
+Lets make an App on which we can see proce of cryptocurrency
+
+1. Get current price of all crypto coins w.r.t to one trading app. eg - coinbase
+
+    - GET https://rest.coinapi.io/v1/assets
+    - GET https://api.coingecko.com/api/v3/coins/markets
+    - GET https://developers.shrimpy.io/docs/#get-candles .... for candles 
