@@ -1,9 +1,12 @@
 .assets-grid{
+    cursor: pointer;
     margin: 20px;
 }
 
+
 .assets-heading{
-    margin: 20px;
+    cursor: pointer;
+    margin: 20px 20px 0px;
 }
 
 .assets-shadow{
@@ -13,3 +16,19 @@
     box-shadow:  5px 5px 10px #141616,
                  -5px -5px 10px #202224;
 }
+
+/* .assets-shadow {
+    padding: 20px;
+    border-radius: 0px;
+    background: #ffffff;
+    box-shadow:  5px 5px 10px #e3e3e3,
+                -5px -5px 10px #ffffff;
+} */
+/* 
+.assets-shadow {
+    padding: 20px;
+    border-radius: 0px;
+    background: #424242;
+    box-shadow:  5px 5px 10px #373737,
+                -5px -5px 10px #4d4d4d;
+} */

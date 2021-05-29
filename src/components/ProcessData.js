@@ -1,9 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
-import { Typography, Space, Row, Col } from 'antd';
+import React, { useState } from 'react'
+import { Typography,  Row, Col } from 'antd';
 import '../static/css/ProcessData.css'
 import DisplayAsset from './DisplayAsset';
 import AssetChart from './AssetChart';
+import { Scrollbars } from 'react-custom-scrollbars';
+
 
 
 export default function DataFetch(props) {
@@ -32,49 +34,51 @@ export default function DataFetch(props) {
         <div>
             {!asset_data && <h2>Processing...</h2>} 
             <div className="assets_wrapper">
-            <Row>
-                <Col span = {6}>
-                    <div className = "assets-heading">
-                        <Row>
-                            <Col span = {24}>
-                                <Row>
-                                    <Col span = {8}>
-                                        <Text type="secondary">Coin Name</Text>
-                                    </Col>
-                                    <Col span = {8}>
-                                        <Text type="secondary">Price(USD)</Text>
-                                    </Col>
-                                    <Col span = {8}>
-                                        <Text type="secondary">Change(24h)</Text>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            
-                            <hr />
-                        </Row>
-                    </div>
-                </Col>
-            </Row>
-            <Row>
-                <Col span = {6}>
-                    {asset_data.map(asset => {
-                        return(
-                            <div className = "assets-grid">
-                                <Row>
-                                    <Col span = {24} className = "assets-shadow">
-                                        <DisplayAsset asset = {asset} handleClick = {handleClick} />  
-                                    </Col>
-                                    <hr />
-                                </Row>
-                            </div>
-                        )
-                    })}
-                </Col>
-                <Col span = {16}>
-                    {assetSymbol && <AssetChart assetSymbol = {assetSymbol}/>}
-                </Col>
-            </Row>
                 
+                <Row>
+                    <Col span = {6}>
+                        <div className = "assets-heading">
+                            <Row>
+                                <Col span = {23}>
+                                    <Row>
+                                        <Col span = {8}>
+                                            <Text type="secondary">Coin Name</Text>
+                                        </Col>
+                                        <Col span = {8}>
+                                            <Text type="secondary">Price(USD)</Text>
+                                        </Col>
+                                        <Col span = {8}>
+                                            <Text type="secondary">Change(24h)</Text>
+                                        </Col>
+                                    </Row>
+                                </Col>
+                                
+                                <hr />
+                            </Row>
+                        </div>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span = {6}>
+                        <Scrollbars style={{ width: 350, height: 600 }}>
+                            {asset_data.map(asset => {
+                                return(
+                                    <div className = "assets-grid">
+                                        <Row>
+                                            <Col span = {24} className = "assets-shadow">
+                                                <DisplayAsset asset = {asset} handleClick = {handleClick} />  
+                                            </Col>
+                                            <hr />
+                                        </Row>
+                                    </div>
+                                )
+                            })}
+                        </Scrollbars>
+                    </Col>
+                    <Col span = {16}>
+                        {assetSymbol && <AssetChart assetSymbol = {assetSymbol}/>}
+                    </Col>
+                </Row>
             </div>
         </div>
     )

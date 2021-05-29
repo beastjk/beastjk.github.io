@@ -1,6 +1,6 @@
 {
-  "name": "crypto-fun",
-  "homepage": "http://beastjk.github.io/",
+  "name": "beastjk.github.io",
+  "homepage": "https://beastjk.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,12 +19,13 @@
     "react": "^17.0.2",
     "react-apexcharts": "^1.3.9",
     "react-chartjs-2": "^2.11.1",
+    "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "eject": "react-scripts eject",
+    "eject": "craco eject",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",

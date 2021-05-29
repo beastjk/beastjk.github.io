@@ -5,3 +5,16 @@ Lets make an App on which we can see proce of cryptocurrency
     - GET https://rest.coinapi.io/v1/assets
     - GET https://api.coingecko.com/api/v3/coins/markets
     - GET https://developers.shrimpy.io/docs/#get-candles .... for candles 
+
+
+
+
+
+Handle Project Versions
+- echo "# beastjk.github.io" >> README.md
+- git init
+- git add README.md
+- git commit -m "first commit"
+- git branch -M main
+- git remote add origin git@github.com:beastjk/beastjk.github.io.git
+- git push -u origin main
