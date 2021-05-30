@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactApexChart from 'react-apexcharts';
 import '../static/css/DisplayChartAssets.css'
+
+import { Line } from "react-chartjs-2";
 
 
 function DisplayChartAssets(props) {
@@ -9,32 +11,48 @@ function DisplayChartAssets(props) {
         name: props.assetSymbol,
         data: props.chartData
     }]
+
+    const [chart, setchart] = useState(props.chartType==="line-chart" ? "area" : "candlestick")
+    
+
+    const data = {
+        labels : props.chartData.map(chunk => new Date(chunk[0]).toLocaleString()),
+        datasets: [
+            {
+                label: props.assetSymbol.toUpperCase() + ' Chart',
+                data: props.chartData.map(chunk => chunk[1]),
+                fill: true,
+                backgroundColor: "rgba(75,192,192,0.2)",
+                borderColor: "rgba(75,192,192,1)"
+            }
+        ]
+        
+
+    }
     
     const options = {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Price(USD)'
+                }
+            }]
+        }     
+    }
+    const optionsCandle = {
         chart: {
             type: 'candlestick',
             height: 350,
              animations: {
                 enabled: true,
              }
-              
-            // events: {
-            //     beforeZoom: function(ctx) {
-            //         // we need to clear the range as we only need it on the iniital load.
-            //         ctx.w.config.xaxis.range = undefined
-            //     }
-            // }
         },
         theme: {
             mode: 'dark'
         },
         plotOptions: {
-            // candlestick: {
-            //     colors: {
-            //         upward: '#3C90EB',
-            //         downward: '#DF7D46'
-            //     },
-            // },
+           
             candlestick: {
                 useFillColor: false
             }
@@ -57,64 +75,18 @@ function DisplayChartAssets(props) {
                 // color: '#ffffff'
             }
         }
-    }
-
-    // const options =  {
-    //     chart: {
-    //     height: 350,
-    //     type: 'candlestick',
-    //     },
-    //     title: {
-    //     text: 'CandleStick Chart - Category X-axis',
-    //     align: 'left'
-    //     },
-    //     annotations: {
-    //     xaxis: [
-    //         {
-    //         x: 'Oct 06 14:00',
-    //         borderColor: '#00E396',
-    //         label: {
-    //             borderColor: '#00E396',
-    //             style: {
-    //             fontSize: '12px',
-    //             color: '#fff',
-    //             background: '#00E396'
-    //             },
-    //             orientation: 'horizontal',
-    //             offsetY: 7,
-    //             text: 'Annotation Test'
-    //         }
-    //         }
-    //     ]
-    //     },
-    //     tooltip: {
-    //         enabled: true,
-    //     },
-    //     xaxis: {
-    //         type: 'category',
-    //         labels: {
-    //             formatter: function(val) {
-    //             return dayjs(val).format('MMM DD HH:mm')
-    //             }
-    //         }
-    //     },
-    //     yaxis: {
-    //         tooltip: {
-    //             enabled: true
-    //         }
-    //     }
-    // }
-            
+    }   
           
 
     useEffect(() => {
+        setchart(props.chartType==="line-chart" ? "area" : "candlestick")
         
-        
-    }, [])
+    }, [props.chartType])
     
     return (
         <div className = 'chart-bg'>
-            {props.chartData && <ReactApexChart options={options} series={series} type="candlestick" height={550}  />}
+            {props.chartData && props.chartType!=="line-chart" && <ReactApexChart options={optionsCandle} series={series} type={"candlestick"} height={550}  />}
+            {props.chartData && props.chartType==="line-chart" && <Line data={data} options = {options} />}
         </div>
     )
 }

@@ -5,6 +5,7 @@ import '../static/css/ProcessData.css'
 import DisplayAsset from './DisplayAsset';
 import AssetChart from './AssetChart';
 import { Scrollbars } from 'react-custom-scrollbars';
+    
 
 
 
@@ -13,6 +14,7 @@ export default function DataFetch(props) {
     const {data} = props
     const { Text } = Typography;
     const [assetSymbol, setAssetSymbol] = useState("")
+    const [assetName, setAssetName] = useState("")
     const asset_data = data.map(asset => {
         
         return(
@@ -27,6 +29,7 @@ export default function DataFetch(props) {
 
     async function handleClick(e){
         setAssetSymbol(e.target.id);
+        setAssetName(e.target.innerHTML)
     }
 
     return (
@@ -61,12 +64,12 @@ export default function DataFetch(props) {
                 <Row>
                     <Col span = {6}>
                         <Scrollbars style={{ width: 350, height: 600 }}>
-                            {asset_data.map(asset => {
+                            {asset_data.map((asset, index) => {
                                 return(
                                     <div className = "assets-grid">
                                         <Row>
                                             <Col span = {24} className = "assets-shadow">
-                                                <DisplayAsset asset = {asset} handleClick = {handleClick} />  
+                                                <DisplayAsset assetSymbol = {assetSymbol} index = {index} asset = {asset} handleClick = {handleClick} />  
                                             </Col>
                                             <hr />
                                         </Row>
@@ -76,7 +79,7 @@ export default function DataFetch(props) {
                         </Scrollbars>
                     </Col>
                     <Col span = {16}>
-                        {assetSymbol && <AssetChart assetSymbol = {assetSymbol}/>}
+                        {assetSymbol && <AssetChart assetSymbol = {assetSymbol} assetName = {assetName}/>}
                     </Col>
                 </Row>
             </div>
@@ -84,37 +87,3 @@ export default function DataFetch(props) {
     )
 }
 
-// import React, { Component } from 'react'
-
-// export class processData extends Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//                         priceAssets: [],
-//                     };
-//     }
-
-//     async processPriceAssets(){
-//         Array.isArray(this.state.priceAssets) && this.props.data.map(chunk=> this.setState(this.state.priceAssets.push({
-//             asset_name: chunk.name,
-//             current_price: chunk.current_price
-//         })), () => console.log(typeof priceAssets))
-//         console.log(this.state.priceAssets[10].asset_name);
-//     }
-
-//     componentDidMount(){
-//         console.log('Process Rendered..');
-//         console.log(this.props.data);
-//         // this.processPriceAssets()
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h2>Process Rendered..</h2>
-//             </div>
-//         )
-//     }
-// }
-
-// export default processData

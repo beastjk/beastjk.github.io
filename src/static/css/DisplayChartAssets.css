@@ -2,6 +2,10 @@ div .apexcharts-canvas .apexcharts-theme-dark {
     color: #ffffff !important;
 }
 
-div .apexcharts-canvas .apexcharts-zoomable {
+div .apexcharts-canvas .apexcharts-svg{
+    background: #1A1C1D !important;
+}
+
+div .apexcharts-tooltip {
     background: #1A1C1D !important;
 }

@@ -3,8 +3,17 @@ Lets make an App on which we can see proce of cryptocurrency
 1. Get current price of all crypto coins w.r.t to one trading app. eg - coinbase
 
     - GET https://rest.coinapi.io/v1/assets
-    - GET https://api.coingecko.com/api/v3/coins/markets
-    - GET https://developers.shrimpy.io/docs/#get-candles .... for candles 
+    - GET https://api.coingecko.com/api/v3/coins/markets ..... for line chart
+    - GET https://developers.shrimpy.io/docs/#get-candles .... for candles chart
+
+2. After getting all assets, display the assets in scroll bar showing there name, current price and 24H change percentage.
+    
+    2.1 Every row of asset is assigned unique symbol of respective of coin. For ex - for bitcoin Key would be "btc"
+
+3. When we click on "coin name" we fetch the coin id ann coin name and pass this details to request the data for that particular coin details.
+
+4. There will be two options to study the trend of that coin, one would be Line chart and Another would be candlesticks.
+
 
 
 

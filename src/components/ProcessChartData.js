@@ -6,15 +6,15 @@ function ProcessChartData(props) {
 
     let {data} = props
     const precision = 3
-    // data = data.slice(data.length/2, data.length)
-    const [chartData, setchartData] = useState(data.map((chunk) => {
-        return(
-            {
-                x: new Date(chunk.time),
-                y: [Number(chunk.open).toFixed(precision), Number(chunk.high).toFixed(precision) , Number(chunk.low).toFixed(precision), Number(chunk.close).toFixed(precision)]
-            }
-        )
-    }))
+    const [chartData, setchartData] = useState(props.chartType==="line-chart" ? (data.prices) : ( Array.isArray(data) && data.map((chunk) => {
+            return(
+                {
+                    x: new Date(chunk.time),
+                    y: [Number(chunk.open).toFixed(precision), Number(chunk.high).toFixed(precision) , Number(chunk.low).toFixed(precision), Number(chunk.close).toFixed(precision)]
+                }
+            )
+        }))
+    )
     // const chartData = data.map((chunk) => {
     //     return(
     //         {
@@ -26,20 +26,21 @@ function ProcessChartData(props) {
 
     useEffect(() => {
         console.log("re-rendered");
-        setchartData(data.map((chunk) => {
-        return(
-            {
-                x: new Date(chunk.time),
-                y: [Number(chunk.open).toFixed(precision), Number(chunk.high).toFixed(precision) , Number(chunk.low).toFixed(precision), Number(chunk.close).toFixed(precision)]
-            }
-        )
-    }))
+        console.log("Re-rendered data ....", data);
+        setchartData(props.chartType==="line-chart" ? (data.prices) : (data.map((chunk) => {
+            return(
+                {
+                    x: new Date(chunk.time),
+                    y: [Number(chunk.open).toFixed(precision), Number(chunk.high).toFixed(precision) , Number(chunk.low).toFixed(precision), Number(chunk.close).toFixed(precision)]
+                }
+            )
+        })))
     }, [data])
     
 
     return (
         <div>
-            {chartData.length!==0 && <DisplayChartAssets assetSymbol = {props.assetSymbol} chartData = {chartData}/>}
+            {chartData && <DisplayChartAssets chartType = {props.chartType} assetSymbol = {props.assetSymbol} chartData = {chartData}/>}
         </div>
     )
 }
